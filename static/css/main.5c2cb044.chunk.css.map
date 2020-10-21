@@ -1,0 +1,1 @@
+{"version":3,"sources":["Todo.css"],"names":[],"mappings":"AAAA,yCACI,YACI,aAAc,CACd,eAAgB,CAChB,WACJ,CACJ","file":"main.5c2cb044.chunk.css","sourcesContent":["@media only screen and (max-width: 767px) {\n    .responsive{\n        max-width: 90%;\n        overflow-x: auto;\n        margin: auto;\n    }\n}"]}
