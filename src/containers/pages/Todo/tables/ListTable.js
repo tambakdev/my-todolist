@@ -1,6 +1,7 @@
 import React from "react";
 
 const ListTable = (props) => (
+  
   <table className="table is-fullwidth">
     <thead>
       <tr>
@@ -20,22 +21,17 @@ const ListTable = (props) => (
             <td>{list.created_at}</td>
             <td>{list.due_date}</td>
             <td>
-              {list.id}
-              <input name={list.id} 
-              onChange={() => props.checkedList(list.id)} 
-              type="checkbox" />
-
               <button
                 onClick={() => {
                   props.editRow(list)                  
                 }}
-                className="button"
+                className="button is-dark is-action-responsive"
               >
                 Edit
               </button>
               <button
                 onClick={() => props.deleteList(list.id)}
-                className="button"
+                className="button is-danger is-.is-button-responsive{-responsive"
               >
                 Delete
               </button>

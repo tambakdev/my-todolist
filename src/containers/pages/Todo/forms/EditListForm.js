@@ -12,6 +12,9 @@ const EditListForm = (props) => {
 
     setList({ ...list, [name]: value });
   };
+  const handleCancel = () => {
+    props.closeModal()
+  }
 
   return (
     <form
@@ -41,6 +44,7 @@ const EditListForm = (props) => {
       <button
         type="button"
         className="button is-danger mt-2"
+        onClick={handleCancel}
       >
         Cancel
       </button>

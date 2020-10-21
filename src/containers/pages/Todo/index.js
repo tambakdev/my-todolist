@@ -2,23 +2,11 @@ import React, { useState, Fragment } from "react";
 import AddListForm from "./forms/AddListForm";
 import EditListForm from "./forms/EditListForm";
 import ListTable from "./tables/ListTable";
+import "./Todo.scss";
 
 const Todo = () => {
 	
-  const listData = [
-    {
-      id: 1,
-      description: "Login",
-      created_at: "2020-10-20",
-      due_date: "2020-10-21",
-    },
-    {
-      id: 2,
-      description: "Dashboard",
-      created_at: "2020-10-20",
-      due_date: "2020-10-21",
-    },
-  ];
+  const listData = [];
 
   const initialFormState = {
     id: null,
@@ -33,7 +21,11 @@ const Todo = () => {
 
   const addList = (list) => {
     list.id = lists.length + 1;
-    list.created_at = new Date().toISOString().slice(0, 10);
+    let today = new Date();
+    let date=today.getFullYear() + 
+      "-" + parseInt(today.getMonth()+1) +
+      "-" + today.getDate() ;
+    list.created_at = date;
     setLists([...lists, list]);
     setShow(false);
   };
@@ -63,15 +55,8 @@ const Todo = () => {
 
   const [showModal, setShow] = useState();
   const closeModal = () => {
-	  setShow(false);
-	  console.log(showModal)
-  };
-
-  const [buttonDelete, setButton] = useState();
-  const checkedList = (id) => {
-	  alert(id);
-	  setButton(false);
-	  console.log(buttonDelete);
+    setShow(false);
+    setEditing(false);
   };
 
   
@@ -91,6 +76,7 @@ const Todo = () => {
                   setEditing={setEditing}
                   currentList={currentList}
                   updateList={updateList}
+                  closeModal={closeModal} 
                 />
               </section>
             </Fragment>
@@ -110,30 +96,21 @@ const Todo = () => {
         </div>
       </div>
 
-      <h1 className="is-size-1">Your Todo Lists</h1>
+      <h1 className="is-size-1 responsive">Your sTodo Lists</h1>
       <div className="flex-row">
-        <div className="mt-5">
+        <div className="mt-5 responsive">
           <ListTable
             lists={lists} 
             editRow={editRow} 
             deleteList={deleteList} 
-            checkedList={checkedList}
           />
         </div>
         <div className="columns mt-5">
-          <div className="column">
-            <button className="button is-info" onClick={() => setShow(true)}>
+          <div className="column has-text-centered">
+            <button 
+              className="button is-info is-add-responsive" 
+              onClick={() => setShow(true)}>
               ADD
-            </button>
-          </div>
-          <div className="column">
-            <button className="button is-dark" disabled>
-              EDIT
-            </button>
-          </div>
-          <div className="column">
-            <button className="button is-danger is-pulled-right" disabled>
-              DELETE
             </button>
           </div>
         </div>
